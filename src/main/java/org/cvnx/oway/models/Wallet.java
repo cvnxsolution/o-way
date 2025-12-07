@@ -5,28 +5,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table(name = "passengers")
+@Table(name = "wallets")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Passenger {
+@NoArgsConstructor
+public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    private String email;
-    private String profileImage;
-    private String nrc;
+    private BigDecimal balance;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "passenger")
-    private Set<Rent> rents;
-
+    @ManyToMany(mappedBy = "wallets")
+    private Set<Payment> payments;
 }

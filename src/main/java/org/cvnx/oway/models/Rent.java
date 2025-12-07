@@ -16,4 +16,19 @@ public class Rent {
     private Long id;
 
     private Double cost;
+
+
+
+    @OneToOne
+    @JoinColumn(name = "destination_id")
+    private Destination destination;
+
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
+
+    @ManyToOne
+    @JoinColumn(name = "passenger_id")
+    private Passenger passenger;
 }

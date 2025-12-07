@@ -8,6 +8,7 @@ import org.cvnx.oway.utils.DestinationStatus;
 import org.cvnx.oway.utils.DriverStatus;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "drivers")
@@ -30,6 +31,18 @@ public class Driver {
     private String yoe;
     private String address;
     private DriverStatus status;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "driver")
+    private Set<Rent> rents;
+
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
 
 }

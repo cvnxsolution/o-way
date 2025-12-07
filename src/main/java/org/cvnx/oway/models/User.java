@@ -18,4 +18,17 @@ public class User {
     private String name;
     private String password;
     private String phoneNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+    @OneToOne(mappedBy = "user")
+    private Driver driver;
+
+    @OneToOne(mappedBy = "user")
+    private Passenger passenger;
+
+    @OneToOne(mappedBy = "user")
+    private Wallet wallet;
 }
